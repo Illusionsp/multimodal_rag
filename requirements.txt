@@ -1,0 +1,37 @@
+# --- UI ---
+streamlit>=1.36
+
+# --- PDF / document parsing ---
+unstructured[pdf]>=0.15
+pdf2image>=1.17
+pandas>=2.0
+tabulate>=0.9
+lxml>=5.0
+
+# --- OCR ---
+pytesseract>=0.3.10
+# paddleocr>=2.7          # optional, heavier: pip install paddleocr paddlepaddle
+opencv-python-headless>=4.9
+
+# --- Vision / embeddings ---
+torch>=2.2
+transformers>=4.42
+sentence-transformers>=3.0
+Pillow>=10.0
+
+# --- Vector DB ---
+chromadb>=0.5
+
+# --- Hybrid search / reranking ---
+rank-bm25>=0.2.2
+# CrossEncoder reranker ships inside sentence-transformers (already listed above)
+
+# --- LLM ---
+groq>=0.9
+requests>=2.31
+
+python-dotenv>=1.0
+
+# --- Sample document generator (scripts/generate_sample_pdf.py) ---
+reportlab>=4.0
+matplotlib>=3.8

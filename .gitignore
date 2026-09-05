@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data/uploads/
+data/images/
+data/chroma_db/
+data/ingest_manifest.json
+.streamlit/
