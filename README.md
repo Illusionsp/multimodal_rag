@@ -1,8 +1,7 @@
-# ReportIQ
+
 
 **A production-ready multimodal RAG assistant for PDF reports.**
-
-ReportIQ turns dense PDFs — financial reports, board decks, procurement
+it turns dense PDFs — financial reports, board decks, procurement
 statements — into a chat interface. Upload a document with complex tables,
 charts, and scanned pages, and get instant, hallucination-resistant answers
 with exact source citations. Built entirely on free/open-source components.
