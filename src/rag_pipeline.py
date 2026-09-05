@@ -22,6 +22,10 @@ import config
 from src.chart_analyzer import ChartAnalyzer
 from src.document_parser import Chunk, DocumentParser
 from src.embeddings import TextEmbedder
+<<<<<<< HEAD
+=======
+from src.ingest_utils import file_hash, load_manifest, save_manifest
+>>>>>>> d248c77 (update readme)
 from src.llm_client import LLMClient
 from src.ocr_engine import OCRProcessor
 from src.retrieval import BM25Index, CrossEncoderReranker, reciprocal_rank_fusion
@@ -85,11 +89,16 @@ class MultimodalRAGPipeline:
         self.bm25 = BM25Index()
         self.reranker = CrossEncoderReranker() if config.ENABLE_RERANKING else None
         self._rebuild_bm25_index()
+<<<<<<< HEAD
         self._manifest = self._load_manifest()
+=======
+        self._manifest = load_manifest(config.INGEST_MANIFEST_PATH)
+>>>>>>> d248c77 (update readme)
 
     # ------------------------------------------------------------------
     # Ingestion dedup
     # ------------------------------------------------------------------
+<<<<<<< HEAD
     @staticmethod
     def _file_hash(pdf_path: str) -> str:
         import hashlib
@@ -116,6 +125,8 @@ class MultimodalRAGPipeline:
 
         config.INGEST_MANIFEST_PATH.write_text(json.dumps(self._manifest, indent=2))
 
+=======
+>>>>>>> d248c77 (update readme)
     def _rebuild_bm25_index(self):
         if not config.ENABLE_HYBRID_SEARCH:
             return
@@ -129,9 +140,15 @@ class MultimodalRAGPipeline:
     # ------------------------------------------------------------------
     def ingest(self, pdf_path: str) -> IngestStats:
         source_name = Path(pdf_path).name
+<<<<<<< HEAD
         file_hash = self._file_hash(pdf_path)
 
         if self._manifest.get(source_name) == file_hash:
+=======
+        file_sha = file_hash(pdf_path)
+
+        if self._manifest.get(source_name) == file_sha:
+>>>>>>> d248c77 (update readme)
             logger.info("Skipping %s - identical file already ingested", source_name)
             return IngestStats(source=source_name, skipped_duplicate=True)
 
@@ -151,8 +168,13 @@ class MultimodalRAGPipeline:
         self._embed_and_store(chunks)
         self._rebuild_bm25_index()
 
+<<<<<<< HEAD
         self._manifest[source_name] = file_hash
         self._save_manifest()
+=======
+        self._manifest[source_name] = file_sha
+        save_manifest(config.INGEST_MANIFEST_PATH, self._manifest)
+>>>>>>> d248c77 (update readme)
 
         stats = IngestStats(
             source=source_name,
@@ -264,4 +286,8 @@ class MultimodalRAGPipeline:
         self.store.reset()
         self.bm25 = BM25Index()
         self._manifest = {}
+<<<<<<< HEAD
         self._save_manifest()
+=======
+        save_manifest(config.INGEST_MANIFEST_PATH, self._manifest)
+>>>>>>> d248c77 (update readme)

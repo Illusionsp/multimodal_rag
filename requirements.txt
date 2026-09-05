@@ -32,6 +32,9 @@ requests>=2.31
 
 python-dotenv>=1.0
 
+# --- Testing ---
+pytest>=8.0
+
 # --- Sample document generator (scripts/generate_sample_pdf.py) ---
 reportlab>=4.0
 matplotlib>=3.8
